@@ -229,9 +229,9 @@ unsigned setbits(unsigned x, int p, int n, unsigned y) {
 int binsearch(int x, int v[], int n) {
     int low = 0, high = n - 1, mid = 0;
 
-    while (low <= high) {
+    while (low < high) {
         mid = (low + high) / 2;
-        if (x < v[mid])
+        if (x <= v[mid])
             high = mid - 1;
         else
             low = mid;
@@ -242,9 +242,9 @@ int binsearch(int x, int v[], int n) {
 
 char *escape(char *from) {
     char cur;
-    char *to = "";
     int from_length = 0, k = 0;
     STRING_LEN(from_length, from);
+    char *to = ALLOCATE(from_length * 2);
 
     for (int i = 0; i < from_length; i++, k++) {
         cur = from[i];
@@ -262,6 +262,8 @@ char *escape(char *from) {
                 break;
         }
     }
+
+    to[k] = '\0';
 
     return to;
 }

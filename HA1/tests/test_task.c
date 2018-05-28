@@ -154,7 +154,7 @@ END_TEST
 
 START_TEST (test_escape)
 {
-	char* test_string = "Hello,     dear    friend.         :3\nHello, world";
+	char* test_string = "Hello,\t dear\tfriend.\t \t:3\nHello, world";
 	char* test_string_expected = "Hello,\\t dear\\tfriend.\\t \\t:3\\nHello, world";
 
 	char* result = escape(test_string);
