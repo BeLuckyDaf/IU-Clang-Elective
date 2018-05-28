@@ -154,13 +154,25 @@ END_TEST
 
 START_TEST (test_escape)
 {
+	char* test_string = "Hello,     dear    friend.         :3\nHello, world";
+	char* test_string_expected = "Hello,\\t dear\\tfriend.\\t \\t:3\\nHello, world";
 
+	char* result = escape(test_string);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
 START_TEST (test_expand)
 {
+	char* test_string = "a-f0-5";
+	char* test_string_expected = "abcdef012345";
 
+	char* result = expand(test_string);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
@@ -178,7 +190,13 @@ END_TEST
 
 START_TEST (test_strrindex)
 {
+	char* test_s = "is binary";
+	char* test_t = "bin";
+	int expected_result = 3;
 
+	int result = strrindex(test_s, test_t);
+	int comparison_result = result == expected_result ? 1 : 0;
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
