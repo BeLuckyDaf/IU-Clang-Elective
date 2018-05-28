@@ -141,7 +141,14 @@ END_TEST
 
 START_TEST (test_binsearch)
 {
+	int test_key = 4;
+	int test_arr[] = {1, 2, 3, 4, 5};
+	int arr_len = sizeof(test_arr) / sizeof(test_arr[0]);
+	int result_expected = 3;
 
+	int result = binsearch(test_key, test_arr, arr_len);
+	int comparison_result = result == result_expected ? 1 : 0;
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 

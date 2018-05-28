@@ -227,7 +227,19 @@ unsigned setbits(unsigned x, int p, int n, unsigned y) {
 	return result;
 }
 
-int binsearch(int x, int v[], int n);
+int binsearch(int x, int v[], int n) {
+	int low = 0, high = n - 1, mid = 0;
+
+	while (low <= high) {
+		mid = (low + high) / 2;
+		if (x < v[mid])
+			high = mid - 1;
+		else
+			low = mid;
+	}
+
+	return (x == v[mid]) ? mid : -1;
+}
 
 char* escape(const char from[], const char to[]);
 
