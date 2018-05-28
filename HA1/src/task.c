@@ -1,7 +1,3 @@
-//
-// Created by cubazis on 25.05.18.
-//
-
 #include <tgmath.h>
 #include "task.h"
 
@@ -49,8 +45,6 @@ char* array_changer(const char c[])
 	}
 	return b;
 }
-
-/** YOUR SOLUTIONS */
 
 char* detab(const char input[])
 {
@@ -184,7 +178,31 @@ int htoi(const char s[]) {
 	return result;
 }
 
-char* squeeze(const char s1[], const char s2[]);
+char* squeeze(const char s1[], const char s2[]) {
+	char cur;
+	char *res = (char *) s1, *new_res;
+	int s1_length = 0, s2_length = 0, k;
+	STRING_LEN(s1_length, s1);
+	STRING_LEN(s2_length, s2);
+
+	for (int i = 0; i < s2_length; i++) {
+		cur = res[i];
+		k = 0;
+		new_res = "";
+
+		for (int j = 0; j < s1_length; j++) {
+			if (res[i] != cur) {
+				new_res[k] = res[i];
+				k++;
+			}
+		}
+		s2_length = k;
+
+		STRING_COPY(new_res, res, k);
+	}
+
+	return res;
+}
 
 int any(const char s1[], const char s2[]) {
 	int s1_size = 0, s2_size = 0;

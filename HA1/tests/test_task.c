@@ -1,7 +1,3 @@
-//
-// Created by cubazis on 25.05.18.
-//
-
 #include <check.h>
 #include "task.h"
 
@@ -38,14 +34,6 @@ START_TEST (test_array_changer)
 
 }
 END_TEST
-
-/** YOUT TEST CASES HERE
- *
- *  please use 'test_fname' format for naming tcases
- *  fname is function name
- *
- *  if function name is 'detab' then test case is 'test_detab'
- * */
 
 START_TEST (test_detab)
 {
@@ -115,7 +103,14 @@ END_TEST
 
 START_TEST (test_squeeze)
 {
+	const char* test_s1 = "albinos";
+	const char* test_s2 = "bin";
+	char* test_string_expected = "alos";
 
+	char* result = squeeze(test_s1, test_s2);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
@@ -210,7 +205,6 @@ Suite* str_suite (void) {
 	tcase_add_test(tcase, test_itob);
 	tcase_add_test(tcase, test_strrindex);
 	tcase_add_test(tcase, test_atofe);
-	/** YOUT TEST CASES HERE */
 
 	suite_add_tcase(suite, tcase);
 	return suite;
