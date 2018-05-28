@@ -1,4 +1,4 @@
-#include <tgmath.h>
+#include <math.h>
 #include "task.h"
 
 /** The stub function
@@ -35,7 +35,7 @@ char *array_changer(const char c[]) {
     char *b = ALLOCATE(i);
 
     for (; j < i;) {
-        if (b[j] == 'c')
+        if (c[j] == 'c')
             b[j] = 'b';
         else
             b[j] = c[j];
@@ -266,11 +266,10 @@ char *escape(char *from) {
     return to;
 }
 
-// Does not work yet
 char *expand(char *s) {
-    char left = s[0], right = '-', cur;
+    char left = s[0], cur;
     char *res = "";
-    int s_length = 0, to_expand = 0;
+    int s_length = 0;
     STRING_LEN(s_length, s);
 
     for (int i = 0; i < s_length; i++) {
@@ -278,16 +277,11 @@ char *expand(char *s) {
         if (cur != '-') {
             if (left == '-') {
                 left = cur;
-            } else if (right == '-') {
-                right = cur;
-                for (char c = left; c <= right; c++) {
+            } else
+                for (char c = left; c <= cur; c++) {
                     res += c;
                 }
-                left = right;
-            } else {
-                left = cur;
-                right = '-';
-            }
+                left = '-';
         }
     }
 
