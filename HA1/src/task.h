@@ -1,7 +1,3 @@
-//
-// Created by cubazis on 25.05.18.
-//
-
 #ifndef TEMPLATE_TASK_H
 #define TEMPLATE_TASK_H
 
@@ -12,9 +8,17 @@
 
 #define STRING_LEN(j, c) do                \
 	{                                  \
-		for (;'\0' != (c)[j];j++); \
+		for (;'\0' != (c)[j];(j)++); \
 		(j) = j;                   \
-	} while(0)                         \
+	} while(0)
+
+#define STRING_COPY(a, b, len) do 			\
+	{						 				\
+		(b) = "";				 			\
+		for(int i = 0; i < (len); i++) {	\
+			(b) = (a)[(len) - 1 - i] + (b);	\
+		}									\
+	} while (0)
 
 #define COMPARATOR(res, c1, c2) do                    \
 	{                                             \
@@ -33,15 +37,10 @@
 	} while(0)
 
 
-/** stub function declaration */
-
 int stub(void);
-
-/** stub array_changer declaration */
 
 char* array_changer(const char c[]);
 
-/** YOUR SOLUTIONS */
 char* detab(const char input[]);
 
 char* entab(const char input[]);
@@ -60,15 +59,15 @@ unsigned setbits(unsigned x, int p, int n, unsigned y);
 
 int binsearch(int x, int v[], int n);
 
-char* escape(const char from[], const char to[]);
+char* escape(char* from);
 
-char* expand(const char s1[], const char s2[]);
+char* expand(char* s);
 
 char* itoa(int n, const char s[]);
 
 char* itob(int n, const char s[], int b);
 
-int strrindex(const char s[], const char t[]);
+int strrindex(char* s, char* t);
 
 double atofe(const char s[]);
 

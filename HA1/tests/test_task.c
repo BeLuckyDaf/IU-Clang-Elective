@@ -1,7 +1,3 @@
-//
-// Created by cubazis on 25.05.18.
-//
-
 #include <check.h>
 #include "task.h"
 
@@ -38,14 +34,6 @@ START_TEST (test_array_changer)
 
 }
 END_TEST
-
-/** YOUT TEST CASES HERE
- *
- *  please use 'test_fname' format for naming tcases
- *  fname is function name
- *
- *  if function name is 'detab' then test case is 'test_detab'
- * */
 
 START_TEST (test_detab)
 {
@@ -115,7 +103,14 @@ END_TEST
 
 START_TEST (test_squeeze)
 {
+	const char* test_s1 = "albinos";
+	const char* test_s2 = "bin";
+	char* test_string_expected = "alos";
 
+	char* result = squeeze(test_s1, test_s2);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
@@ -146,19 +141,38 @@ END_TEST
 
 START_TEST (test_binsearch)
 {
+	int test_key = 4;
+	int test_arr[] = {1, 2, 3, 4, 5};
+	int arr_len = sizeof(test_arr) / sizeof(test_arr[0]);
+	int result_expected = 3;
 
+	int result = binsearch(test_key, test_arr, arr_len);
+	int comparison_result = result == result_expected ? 1 : 0;
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
 START_TEST (test_escape)
 {
+	char* test_string = "Hello,     dear    friend.         :3\nHello, world";
+	char* test_string_expected = "Hello,\\t dear\\tfriend.\\t \\t:3\\nHello, world";
 
+	char* result = escape(test_string);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
 START_TEST (test_expand)
 {
+	char* test_string = "a-f0-5";
+	char* test_string_expected = "abcdef012345";
 
+	char* result = expand(test_string);
+	int comparison_result = 1;
+	COMPARATOR(comparison_result, result, test_string_expected);
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
@@ -176,7 +190,13 @@ END_TEST
 
 START_TEST (test_strrindex)
 {
+	char* test_s = "is binary";
+	char* test_t = "bin";
+	int expected_result = 3;
 
+	int result = strrindex(test_s, test_t);
+	int comparison_result = result == expected_result ? 1 : 0;
+	ck_assert(comparison_result == 1);
 }
 END_TEST
 
@@ -210,7 +230,6 @@ Suite* str_suite (void) {
 	tcase_add_test(tcase, test_itob);
 	tcase_add_test(tcase, test_strrindex);
 	tcase_add_test(tcase, test_atofe);
-	/** YOUT TEST CASES HERE */
 
 	suite_add_tcase(suite, tcase);
 	return suite;
