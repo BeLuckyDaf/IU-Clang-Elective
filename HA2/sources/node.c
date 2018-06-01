@@ -2,7 +2,7 @@
 #include "../headers/node.h"
 #include <stdlib.h>
 
-NODE * const create_node() {
+NODE * create_node() {
 	NODE * node = (NODE*) malloc(sizeof(NODE));
 	node->next = NULL;
 	node->previous = NULL;
