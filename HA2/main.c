@@ -2,27 +2,18 @@
 #include "headers/bds.h"
 
 int main() {
-	QUEUE * const queue = create_queue();
-	STACK * const stack = create_stack();
 
-	/* let's add something */
-	queue_enqueue(queue, 10);
-	queue_enqueue(queue, 15);
-	stack_put(stack, 10);
-	stack_put(stack, 15);
+	PQ* q = create_pq();
 
-	/* now, let's get it out */
-	int a = queue_dequeue(queue);
-	int b = queue_dequeue(queue);
-	int c = stack_pull(stack);
-	int d = stack_pull(stack);
+	pq_insert(q, 1, 3);
+	pq_insert(q, 2, 2);
+	pq_insert(q, 3, 4);
+	pq_insert(q, 4, 1);
 
-	printf("QUEUE:\n\ta: %d\n\tb: %d\nSTACK:\n\tc: %d\n\td: %d", a, b, c, d);
-
-	/* they are dynamically stored objects, so don't forget to delete them
-	 * it's like deleting 'new' objects in C++ */
-	delete_stack(stack);
-	delete_queue(queue);
+	printf("%d\n", pq_extract_head(q));
+	printf("%d\n", pq_extract_head(q));
+	printf("%d\n", pq_extract_head(q));
+	printf("%d\n", pq_extract_head(q));
 
 	return 0;
 }
