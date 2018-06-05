@@ -83,7 +83,7 @@ void pq_insert(PQ *pq, int val, int priority) {
 	sift_up(pq, pq->size);
 
 	pq->size++;
-
+  
 	if (pq->size >= (pq->max_size-1) / 2) {
 		increase_array(pq);
 	}

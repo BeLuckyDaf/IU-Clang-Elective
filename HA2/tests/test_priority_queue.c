@@ -4,7 +4,6 @@
 
 // TODO
 
-
 START_TEST (queue_test)
 {
     PQ* q = create_pq();
