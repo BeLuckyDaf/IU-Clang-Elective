@@ -25,7 +25,7 @@ static void sift_up(PQ* pq, int i) {
 }
 
 static void sift_down(PQ* pq, int i) {
-	if (i < pq->size) {
+	if ((i) < (pq->size-1)/2) {
 		PQ_NODE *node = pq->heap[i];
 		PQ_NODE *left = pq->heap[i * 2 + 1];
 		PQ_NODE *right = pq->heap[i * 2 + 2];
@@ -83,8 +83,8 @@ void pq_insert(PQ *pq, int val, int priority) {
 	sift_up(pq, pq->size);
 
 	pq->size++;
-
-	if (pq->size >= pq->max_size / 2) {
+  
+	if (pq->size >= (pq->max_size-1) / 2) {
 		increase_array(pq);
 	}
 }

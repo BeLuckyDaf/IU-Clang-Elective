@@ -1,21 +1,24 @@
 #include <check.h>
+#include <stdio.h>
 #include "../headers/priority_queue.h"
 
 // TODO
 
-/*
 START_TEST (queue_test)
 {
-    PQ* q = create_queue();
+    PQ* q = create_pq();
 
-    queue_enqueue(q, 1);
-    queue_enqueue(q, 2);
-    queue_enqueue(q, 3);
+    pq_insert(q, 1, 3);
+	pq_insert(q, 2, 2);
+	pq_insert(q, 3, 4);
+	pq_insert(q, 4, 1);
 
-    ck_assert(queue_dequeue(q) == 1);
-    ck_assert(queue_peek(q) == 2);
+	ck_assert(pq_extract_head(q) == 3);
+	ck_assert(pq_extract_head(q) == 1);
+	ck_assert(pq_extract_head(q) == 2);
+	ck_assert(pq_extract_head(q) == 4);
 
-    delete_queue(q);
+	delete_pq(q);
 }
 END_TEST
 
@@ -40,4 +43,4 @@ int main (int argc, char *argv[]) {
     number_failed = srunner_ntests_failed(runner);
     srunner_free(runner);
     return number_failed;
-}*/
+}
