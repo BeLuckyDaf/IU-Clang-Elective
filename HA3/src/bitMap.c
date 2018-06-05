@@ -4,8 +4,8 @@
 void setBitByNumber(int* array, int bit, int position)
 {
     int* reqIntPointer = array + position / INT_SIZE_BIT;
-    int mask = (1 << INT_SIZE_BIT) - 1 - (bit == 0 ? 1 << (INT_SIZE_BIT - 1 - (position % INT_SIZE_BIT)) : 0);
-    *(reqIntPointer) &= mask;
+    int mask = (1 << (INT_SIZE_BIT - (position % INT_SIZE_BIT)-1));
+    *(reqIntPointer) = bit == 1? (*reqIntPointer | mask) : (*reqIntPointer & ~mask);
 }
 
 // this function returns position's bit from the array
@@ -19,11 +19,11 @@ int getBitByNumber(int* array, int position)
 void setBitByAddress(void* position, int bit)
 {
     char mask = (bit == 1) ? (char)(1 << CHAR_SIZE_BIT - 1) : (char)(1 << (CHAR_SIZE_BIT - 1) - 1);
-    *((char*)position) = (char)bit & mask;
+    *((char*)position) = bit == 1? (char)bit | mask : (char)bit & ~mask;
 }
 
 // this function returns first bit by memory address 'position'
 int getBitByAddress(void* position)
 {
-    return *((char*)position) & 128;
+    return (*((char*)position) & 128) >> (CHAR_SIZE_BIT - 1);
 }

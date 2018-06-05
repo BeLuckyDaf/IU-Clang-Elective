@@ -1,8 +1,9 @@
 #ifndef __BITMAP_H_
 #define __BITMAP_H_
 
-#define INT_SIZE_BIT sizeof(int) * 8
-#define CHAR_SIZE_BIT sizeof(char) * 8
+#define BYTE_SIZE 8
+#define INT_SIZE_BIT (sizeof(int) * BYTE_SIZE)
+#define CHAR_SIZE_BIT (sizeof(char) * BYTE_SIZE)
 
 void setBitByNumber(int* array, int bit, int position);
 
