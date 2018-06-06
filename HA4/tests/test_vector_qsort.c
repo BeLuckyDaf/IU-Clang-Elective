@@ -4,27 +4,29 @@
 
 #include <check.h>
 #include "vector_int.h"
+#include "vector.c"
 #include <stdlib.h>
-
-#define NELEMS(x) (sizeof (x)/sizeof (x[0]))
+#include <stdio.h>
 
 int comp_vectors_int(const void *a, const void *b)
 /* Returns -ve if a<b, 0 if a==b, +ve if a>b */
 {
-	struct Vector *v1 = (struct Vector *)a;
-	struct Vector *v2 = (struct Vector *)b;
-	/** YOUR CODE HERE */
+	// struct Vector *v1 = (struct Vector *)a;
+	// struct Vector *v2 = (struct Vector *)b;
+	if (*(int*)(a) > *(int*)(b)) return 1;
+	else if (*(int*)(a) < *(int*)(b)) return -1;
+	else return 0;
 }
 
 START_TEST(test_vector_qsort)
 {
-	struct Vector *v;
-	for (int i = 0; i < NELEMS(v); ++i) {
-		/** Initialisation */
+	struct Vector *v = (struct Vector*)malloc(10 * sizeof(struct Vector));
+	for (int i = 0; i < 10; ++i) {
+		((int*)v->data)[i] = 10 - i;
 	}
-	qsort(&v, NELEMS(v), sizeof v[0], comp_vectors_int);
-	for (int i = 0; i < NELEMS(v); ++i) {
-		/** printf */
+	qsort(&v, 10, sizeof v[0], comp_vectors_int);
+	for (int i = 0; i < 10; ++i) {
+		printf("%d ", ((int*)v->data)[i]);
 	}
 }
 END_TEST
